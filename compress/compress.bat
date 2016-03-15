@@ -1,0 +1,1 @@
+uglifyjs build\win\package-debug.js -m -o build\win\package-debug-min.js
