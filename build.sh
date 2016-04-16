@@ -1,5 +1,5 @@
 #!/bin/bash
-# @File: build.bat
+# @File: build.sh
 # @Description: packjs
 #
 # @Author:  Pury <szwzjx@gmail.com>
