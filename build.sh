@@ -1,13 +1,22 @@
-echo "var gCantkBuildDate = \"$(date)\";console.log(\"cantk build date: \" + gCantkBuildDate);" >version.js
+#!/bin/bash
 
-mkdir -p build
-cat $(cat files) >build/cantkraw-debug.js
+cp files.txt target
 
-cat base/js/base-debug.js module_start.js build/cantkraw-debug.js module_end.js > build/cantk-debug.js
-cat base/js/base-debug.js build/cantkraw-debug.js > build/cantk-ide.js
+sed -i 's/\\/\//g' target
 
-uglifyjs build/cantkraw-debug.js -m > build/cantkraw.js
-uglifyjs build/cantk-debug.js -m > build/cantk.js
-cp -f build/cantk-debug.js js
-cp -f build/cantk.js js
-gzip -f --keep js/cantk.js
+cat $(cat target) >build/linux/package-debug.js
+
+rm target
+
+currentTime=`date +%Y%m%d%H%M%S`
+
+version=$currentTime
+
+show="linux version: $version"
+
+echo -e "\nconsole.log(\"$show\");" >> build/linux/package-debug.js
+
+echo $show
+
+#uglifyjs build/cantkraw-debug.js -m > build/cantkraw.js
+#cat $(cat files.txt) >build/linux/package-debug.js
